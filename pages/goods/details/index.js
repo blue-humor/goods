@@ -312,7 +312,6 @@ Page({
     then((res) => {
       const [detailsarray, activityList] = res;
       const details= detailsarray.data;
-
       const skuArray = [];
       const {
         skuList,

@@ -7,7 +7,7 @@ export const OrderStatus = {
   CANCELED_NOT_PAYMENT: 80, // 已取消，未支付主动取消
   CANCELED_PAYMENT: 80, // 已取消，已支付主动取消
   CANCELED_REJECTION: 80, // 已取消，拒收
-};
+  ALL:-1}
 
 // 售后状态 10:待审核,20:已审核,30:已收货,40:收货异常,50:已完成,60:已关闭;
 export const AfterServiceStatus = {

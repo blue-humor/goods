@@ -20,6 +20,7 @@ Page({
     hasLoaded: false,
     loadMoreStatus: 0,
     loading: true,
+    groupId:'',
   },
 
   pageNum: 1,
@@ -66,19 +67,25 @@ Page({
       ...params,
       pageNum: pageNum + 1,
       pageSize,
+      groupId:this.data.groupId
     };
   },
 
   async init(reset = true) {
     const { loadMoreStatus, goodsList = [] } = this.data;
     const params = this.generalQueryData(reset);
+ 
+    // console.log(parmas);
+
     if (loadMoreStatus !== 0) return;
     this.setData({
       loadMoreStatus: 1,
       loading: true,
     });
     try {
-      const result = await fetchGoodsList(params);
+      const result = await fetchGoodsList({...params,groupId:this.data.groupId});
+
+
       const code = 'Success';
       const data = result.data;
       if (code.toUpperCase() === 'SUCCESS') {
@@ -124,7 +131,10 @@ Page({
     });
   },
 
-  onLoad() {
+  onLoad(query) {
+    this.setData({
+      groupId:query.groupId
+    });
     this.init(true);
   },
 

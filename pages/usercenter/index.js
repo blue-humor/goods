@@ -29,13 +29,13 @@ const menuData = [
       url: '',
       type: 'help-center',
     },
-    {
-      title: '客服热线',
-      tit: '',
-      url: '',
-      type: 'service',
-      icon: 'service',
-    },
+    // {
+    //   title: '客服热线',
+    //   tit: '',
+    //   url: '',
+    //   type: 'service',
+    //   icon: 'service',
+    // },
   ],
 ];
 

@@ -1,5 +1,7 @@
 import { config } from '../../config/index';
 
+import  request from "../../utils/request";
+
 /** 获取订单列表mock数据 */
 function mockFetchOrders(params) {
   const { delay } = require('../_utils/delay');
@@ -9,13 +11,10 @@ function mockFetchOrders(params) {
 }
 
 /** 获取订单列表数据 */
-export function fetchOrders(params) {
-  if (config.useMock) {
-    return mockFetchOrders(params);
-  }
-
-  return new Promise((resolve) => {
-    resolve('real api');
+export function fetchOrders(data) {
+  return request(`/order/getOrderList`, {
+    method: 'POST',
+    data,
   });
 }
 

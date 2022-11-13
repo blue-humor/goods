@@ -31,6 +31,9 @@ Page({
 
   onLoad() {
     this.init();
+ 
+    
+
   },
 
   onReachBottom() {

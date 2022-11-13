@@ -7,7 +7,7 @@ Page({
     try {
       const result = await getCategoryList();
       this.setData({
-        list: result,
+        list: result.data,
       });
     } catch (error) {
       console.error('err:', error);
@@ -17,9 +17,11 @@ Page({
   onShow() {
     this.getTabBar().init();
   },
-  onChange() {
+  onChange(e) {
+   const groupId=e.detail.item.groupId
+    console.log(this.data.list);
     wx.navigateTo({
-      url: '/pages/goods/list/index',
+      url: `/pages/goods/list/index?groupId=${groupId}`,
     });
   },
   onLoad() {

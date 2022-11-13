@@ -77,14 +77,17 @@ Page({
   getOrderList(statusCode = -1, reset = false) {
     const params = {
       parameter: {
+        // 当前用户id
+        memberId:1,
         pageSize: this.page.size,
         pageNum: this.page.num,
       },
     };
-    if (statusCode !== -1) params.parameter.orderStatus = statusCode;
+    if (true) params.parameter.orderStatus = statusCode;
     this.setData({ listLoading: 1 });
-    return fetchOrders(params)
+    return fetchOrders(params.parameter)
       .then((res) => {
+        console.log(params.parameter);
         this.page.num++;
         let orderList = [];
         if (res && res.data && res.data.orders) {
@@ -151,6 +154,7 @@ Page({
 
   getOrdersCount() {
     return fetchOrdersCount().then((res) => {
+
       const tabsCount = res.data || [];
       const { tabs } = this.data;
       tabs.forEach((tab) => {
