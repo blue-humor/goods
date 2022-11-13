@@ -2,6 +2,7 @@ var app = getApp(); //引入全局app.js，我们可以在globalData中定义一
 
 const baseUrl = 'http://121.4.166.61:8080/api-ordering'
 
+
 const request = function (url, options) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -9,7 +10,7 @@ const request = function (url, options) {
       method: options.method,
       data: JSON.stringify(options.data),
       header: {
-        'token': 'f8bb2dac-ce50-4a5e-b8ec-a777f18fb593'
+        'token': wx.getStorageSync('token')
       },
       success: (res) => {
         return resolve(res.data)

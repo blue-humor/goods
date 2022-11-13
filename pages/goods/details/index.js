@@ -311,7 +311,7 @@ Page({
     Promise.all([fetchGood({spuId}), fetchActivityList()]).
     then((res) => {
       const [detailsarray, activityList] = res;
-      const details= detailsarray.data[0];
+      const details= detailsarray.data;
 
       const skuArray = [];
       const {

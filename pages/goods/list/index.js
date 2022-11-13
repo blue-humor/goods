@@ -80,7 +80,7 @@ Page({
     try {
       const result = await fetchGoodsList(params);
       const code = 'Success';
-      const data = result;
+      const data = result.data;
       if (code.toUpperCase() === 'SUCCESS') {
         const { spuList, totalCount = 0 } = data;
         if (totalCount === 0 && reset) {

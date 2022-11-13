@@ -25,9 +25,9 @@ Page({
     tabIndex: 0,
   },
 
-  onShow() {
-    this.getTabBar().init();
-  },
+  // onShow() {
+  //   this.getTabBar().init();
+  // },
 
   onLoad() {
     this.init();
