@@ -53,10 +53,13 @@ Page({
     this.setData({
       pageLoading: true,
     });
-    fetchHome().then(({ swiper, tabList }) => {
+    fetchHome({}).then(res => {
       this.setData({
-        tabList,
-        imgSrcs: swiper,
+        tabList:[{
+          text: '精选推荐',
+          key: 0,
+        }],
+        imgSrcs: res,
         pageLoading: false,
       });
       this.loadGoodsList(true);
@@ -89,9 +92,9 @@ Page({
     }
 
     try {
-      const nextList = await fetchGoodsList(pageIndex, pageSize);
+      const nextList = await fetchGoodsList({pageIndex, pageSize})
       this.setData({
-        goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
+        goodsList: fresh ? nextList.data : this.data.goodsList.concat(nextList.data),
         goodsListLoadStatus: 0,
       });
 

@@ -1,5 +1,8 @@
 import { config } from '../../config/index';
 
+
+import request from "../../utils/request";
+
 /** 获取商品列表 */
 function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
   const { delay } = require('../_utils/delay');
@@ -19,11 +22,9 @@ function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
 }
 
 /** 获取商品列表 */
-export function fetchGoodsList(pageIndex = 1, pageSize = 20) {
-  if (config.useMock) {
-    return mockFetchGoodsList(pageIndex, pageSize);
-  }
-  return new Promise((resolve) => {
-    resolve('real api');
+export function fetchGoodsList(data) {
+  return request(`/goods/getHomeGoodsList`, {
+    method: 'POST',
+    data,
   });
 }

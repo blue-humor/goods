@@ -1,5 +1,7 @@
 import { config, cdnBase } from '../../config/index';
 
+import request from "../../utils/request";
+
 /** 获取首页数据 */
 function mockFetchHome() {
   const { delay } = require('../_utils/delay');
@@ -43,11 +45,9 @@ function mockFetchHome() {
 }
 
 /** 获取首页数据 */
-export function fetchHome() {
-  if (config.useMock) {
-    return mockFetchHome();
-  }
-  return new Promise((resolve) => {
-    resolve('real api');
+export function fetchHome(data) {
+  return request(`/images/fetchAll`, {
+    method: 'POST',
+    data,
   });
 }
