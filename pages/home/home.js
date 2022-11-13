@@ -107,9 +107,11 @@ Page({
 
   goodListClickHandle(e) {
     const { index } = e.detail;
-    const { spuId } = this.data.goodsList[index];
+    const { id } = this.data.goodsList[index];
+
+
     wx.navigateTo({
-      url: `/pages/goods/details/index?spuId=${spuId}`,
+      url: `/pages/goods/details/index?spuId=${id}`,
     });
   },
 
