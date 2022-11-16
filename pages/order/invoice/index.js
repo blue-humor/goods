@@ -16,6 +16,7 @@ Page({
       parameter: this.orderNo,
     };
     return fetchOrderDetail(params).then((res) => {
+      console.log('fetchOrderDetail',params);
       const order = res.data;
 
       const invoice = {

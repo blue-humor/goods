@@ -1,20 +1,28 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
+<view class='headView'>
+  <open-data class='icon' mode="aspectFit" type="userAvatarUrl"></open-data>
+  <view class='icon'></view>
 </view>
+<view class="cancel-btn">
+  <t-button
+          block
+          theme="primary"
+          size="large"
+          variant="text"
+          bindtap="getUserProfile"
+          >授权登录
+  </t-button>
+
+
+  
+</view>
+<view class="cancel-btn cancel" >
+  <t-button
+          t-class="cancel"
+          block
+          theme="light"
+          size="large"
+          bindtap="cancelAuth"
+          >取消授权
+  </t-button>
+</view>
+
