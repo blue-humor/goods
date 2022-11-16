@@ -65,6 +65,9 @@ Page({
   },
   getAddressDetail(id) {
     fetchDeliveryAddress(id).then((detail) => {
+      console.log("id",id);
+      console.log("detail",detail);
+
       this.setData({ locationState: detail }, () => {
         const { isLegal, tips } = this.onVerifyInputLegal();
         this.setData({
@@ -310,6 +313,8 @@ Page({
       return;
     }
     const { locationState } = this.data;
+
+    console.log('addressTag',locationState);
 
     this.hasSava = true;
 

@@ -49,6 +49,7 @@ Page({
   getAddressList() {
     const { id } = this.data;
     fetchDeliveryAddressList().then((addressList) => {
+      console.log('addressList',addressList);
       addressList.forEach((address) => {
         if (address.id === id) {
           address.checked = true;
@@ -129,6 +130,7 @@ Page({
   selectHandle({ detail }) {
     if (this.selectMode) {
       this.hasSelect = true;
+      console.log('detaildetail',detail);
       resolveAddress(detail);
       wx.navigateBack({ delta: 1 });
     } else {

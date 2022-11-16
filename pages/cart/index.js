@@ -98,11 +98,14 @@ Page({
   },
 
   // 注：实际场景时应该调用接口获取购物车数据
-  getCartGroupData() {
+async  getCartGroupData() {
     const { cartGroupData } = this.data;
     if (!cartGroupData) {
-      return fetchCartGroupData();
+      const res =await fetchCartGroupData();
+      console.log(res);
+      return res
     }
+
     return Promise.resolve({ data: cartGroupData });
   },
 
