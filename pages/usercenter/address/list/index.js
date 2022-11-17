@@ -130,8 +130,9 @@ Page({
   selectHandle({ detail }) {
     if (this.selectMode) {
       this.hasSelect = true;
-      console.log('detaildetail',detail);
-      resolveAddress(detail);
+     
+     resolveAddress(detail);
+     console.log('detaildetail',detail);
       wx.navigateBack({ delta: 1 });
     } else {
       this.editAddressHandle({ detail });

@@ -312,8 +312,8 @@
     },
 
 
-    添加购物车
-    data:{
+添加购物车
+data:{
 available: 1
 goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
 price: 19800
@@ -437,6 +437,35 @@ provinceCode: "620000"
 provinceName: "甘肃省"
 saasId: "88888888"
 storeId: null
+uid: "88888888205502"
+}
+
+选择收获地址
+前端传递
+{
+address: "甘肃省甘南藏族自治州碌曲县松日鼎盛大厦2层2号"
+addressId: "2"
+addressTag: "公司"
+authToken: null
+cityCode: "623000"
+cityName: "甘南藏族自治州"
+countryCode: "chn"
+countryName: "中国"
+detailAddress: "松日鼎盛大厦2层2号"
+districtCode: "623026"
+districtName: "碌曲县"
+id: "2"
+isDefault: 0
+latitude: "34.59103"
+longitude: "102.48699"
+name: "测试用户2"
+phone: "17612345678"
+phoneNumber: "17612345678"
+provinceCode: "620000"
+provinceName: "甘肃省"
+saasId: "88888888"
+storeId: null
+tag: "公司"
 uid: "88888888205502"
 }
 
@@ -647,4 +676,52 @@ totalSalePrice: 9800
 userAddress: null
 }
 
-
+提交订单支付成功
+前端传递
+{
+  couponList: [ {couponId: 11, storeId: "1000"}]
+goodsRequestList: [{
+  available: 1
+goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
+price: 9800
+primaryImage: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
+quantity: 2
+specInfo:  [ {specTitle: "颜色", specValue: "米色荷叶边"}
+1: {specTitle: "尺寸", specValue: "12寸"}]
+spuId: 1
+storeId: "1"
+thumb: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
+title: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
+}]
+invoiceRequest: null
+storeInfoList: [ {storeId: "1000", storeName: "云Mall深圳旗舰店", remark: ""}]
+totalAmount: 18500
+userAddressReq: {
+  address: "甘肃省甘南藏族自治州碌曲县松日鼎盛大厦0层0号"
+addressId: "0"
+addressTag: ""
+authToken: null
+checked: true
+cityCode: "623000"
+cityName: "甘南藏族自治州"
+countryCode: "chn"
+countryName: "中国"
+detailAddress: "松日鼎盛大厦0层0号"
+districtCode: "623026"
+districtName: "碌曲县"
+id: "0"
+isDefault: 1
+latitude: "34.59103"
+longitude: "102.48699"
+name: "测试用户0"
+phone: "17612345678"
+phoneNumber: "17612345678"
+provinceCode: "620000"
+provinceName: "甘肃省"
+saasId: "88888888"
+storeId: null
+tag: ""
+uid: "88888888205500"
+}
+userName: "测试用户0"
+}
