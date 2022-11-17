@@ -1,9 +1,10 @@
-import { fetchUserCenter } from '../../services/usercenter/fetchUsercenter';
+import {
+  fetchUserCenter
+} from '../../services/usercenter/fetchUsercenter';
 import Toast from 'tdesign-miniprogram/toast/index';
 
 const menuData = [
-  [
-    {
+  [{
       title: '收货地址',
       tit: '',
       url: '',
@@ -39,8 +40,7 @@ const menuData = [
   ],
 ];
 
-const orderTagInfos = [
-  {
+const orderTagInfos = [{
     title: '待付款',
     iconName: 'wallet',
     orderNum: 0,
@@ -62,19 +62,26 @@ const orderTagInfos = [
     status: 1,
   },
   {
-    title: '待评价',
+    title: '已完成',
     iconName: 'comment',
     orderNum: 0,
     tabType: 60,
     status: 1,
   },
-  {
-    title: '退款/售后',
-    iconName: 'exchang',
-    orderNum: 0,
-    tabType: 0,
-    status: 1,
-  },
+  // {
+  //   title: '待评价',
+  //   iconName: 'comment',
+  //   orderNum: 0,
+  //   tabType: 60,
+  //   status: 1,
+  // },
+  // {
+  //   title: '退款/售后',
+  //   iconName: 'exchang',
+  //   orderNum: 0,
+  //   tabType: 0,
+  //   status: 1,
+  // },
 ];
 
 const getDefaultData = () => ({
@@ -144,12 +151,18 @@ Page({
     );
   },
 
-  onClickCell({ currentTarget }) {
-    const { type } = currentTarget.dataset;
+  onClickCell({
+    currentTarget
+  }) {
+    const {
+      type
+    } = currentTarget.dataset;
 
     switch (type) {
       case 'address': {
-        wx.navigateTo({ url: '/pages/usercenter/address/list/index' });
+        wx.navigateTo({
+          url: '/pages/usercenter/address/list/index'
+        });
         break;
       }
       case 'service': {
@@ -177,7 +190,9 @@ Page({
         break;
       }
       case 'coupon': {
-        wx.navigateTo({ url: '/pages/coupon/coupon-list/index' });
+        wx.navigateTo({
+          url: '/pages/coupon/coupon-list/index'
+        });
         break;
       }
       default: {
@@ -197,22 +212,33 @@ Page({
     const status = e.detail.tabType;
 
     if (status === 0) {
-      wx.navigateTo({ url: '/pages/order/after-service-list/index' });
+      wx.navigateTo({
+        // url: '/pages/order/after-service-list/index'
+        url: `/pages/order/order-list/index?status=${50}`
+      });
     } else {
-      wx.navigateTo({ url: `/pages/order/order-list/index?status=${status}` });
+      wx.navigateTo({
+        url: `/pages/order/order-list/index?status=${status}`
+      });
     }
   },
 
   jumpAllOrder() {
-    wx.navigateTo({ url: '/pages/order/order-list/index' });
+    wx.navigateTo({
+      url: '/pages/order/order-list/index'
+    });
   },
 
   openMakePhone() {
-    this.setData({ showMakePhone: true });
+    this.setData({
+      showMakePhone: true
+    });
   },
 
   closeMakePhone() {
-    this.setData({ showMakePhone: false });
+    this.setData({
+      showMakePhone: false
+    });
   },
 
   call() {
@@ -222,9 +248,13 @@ Page({
   },
 
   gotoUserEditPage() {
-    const { currAuthStep } = this.data;
+    const {
+      currAuthStep
+    } = this.data;
     if (currAuthStep === 2) {
-      wx.navigateTo({ url: '/pages/usercenter/person-info/index' });
+      wx.navigateTo({
+        url: '/pages/usercenter/person-info/index'
+      });
     } else {
       this.fetUseriInfoHandle();
     }
@@ -232,7 +262,10 @@ Page({
 
   getVersionInfo() {
     const versionInfo = wx.getAccountInfoSync();
-    const { version, envVersion = __wxConfig } = versionInfo.miniProgram;
+    const {
+      version,
+      envVersion = __wxConfig
+    } = versionInfo.miniProgram;
     this.setData({
       versionNo: envVersion === 'release' ? version : envVersion,
     });

@@ -314,7 +314,7 @@
 
     添加购物车
     data:{
-      available: 1
+available: 1
 goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
 price: 19800
 primaryImage: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
@@ -439,3 +439,212 @@ saasId: "88888888"
 storeId: null
 uid: "88888888205502"
 }
+
+
+获取订单详情
+前端 {parameter: "AAAAA"}
+  data: {
+      saasId: '88888888',
+      storeId: '1000',
+      storeName: '云Mall深圳旗舰店',
+      uid: '88888888205468',
+      parentOrderNo: '354021731671873099',
+      orderId: '354021735982432279',
+      orderNo: '354021731671873099',
+      orderType: 0,
+      orderSubType: 0,
+      orderStatus: 5,
+      orderSubStatus: null,
+      totalAmount: '10010',
+      goodsAmount: '10000',
+      goodsAmountApp: '10000',
+      paymentAmount: '20',
+      freightFee: '10',
+      packageFee: '0',
+      discountAmount: '9990',
+      channelType: 0,
+      channelSource: '',
+      channelIdentity: '',
+      remark: '买电风扇送电池吗',
+      cancelType: 0,
+      cancelReasonType: 0,
+      cancelReason: '',
+      rightsType: 0,
+      createTime: '1600350829288',
+      orderItemVOs: [
+        {
+          id: '354021736133427225',
+          orderNo: null,
+          spuId: '3',
+          skuId: '135696670',
+          roomId: null,
+          goodsMainType: 0,
+          goodsViceType: 0,
+          goodsName:
+            '腾讯极光盒子4智能网络电视机顶盒6K千兆网络机顶盒4K高分辨率',
+          specifications: [
+            { specTitle: '颜色', specValue: '贵族青' },
+            { specTitle: '类型', specValue: '尊享礼盒装' },
+          ],
+          goodsPictureUrl:
+            'https://cdn-we-retail.ym.tencent.com/tsr/goods/dz-3b.png',
+          originPrice: '0',
+          actualPrice: '9999',
+          buyQuantity: 1,
+          itemTotalAmount: '9999',
+          itemDiscountAmount: '9990',
+          itemPaymentAmount: '10',
+          goodsPaymentPrice: '10',
+          tagPrice: null,
+          tagText: null,
+          outCode: null,
+          labelVOs: null,
+          buttonVOs: [{ primary: false }],
+        },
+      ],
+      logisticsVO: {
+        logisticsType: 1,
+        logisticsNo: '',
+        logisticsStatus: null,
+        logisticsCompanyCode: '',
+        logisticsCompanyName: '',
+        receiverAddressId: '14',
+        provinceCode: '440000',
+        cityCode: '440300',
+        countryCode: '440306',
+        receiverProvince: '广东省',
+        receiverCity: '深圳市',
+        receiverCountry: '宝安区',
+        receiverArea: '',
+        receiverAddress: '沙井中心路28号丽沙花都xx栋xx号',
+        receiverPostCode: '',
+        receiverLongitude: '113.829127',
+        receiverLatitude: '22.713649',
+        receiverIdentity: '88888888205468',
+        receiverPhone: '17612345678',
+        receiverName: '测试用户',
+        expectArrivalTime: null,
+        senderName: '',
+        senderPhone: '',
+        senderAddress: '',
+        sendTime: null,
+        arrivalTime: null,
+      },
+      paymentVO: {
+        payStatus: 1,
+        amount: '20',
+        currency: null,
+        payType: null,
+        payWay: null,
+        payWayName: null,
+        interactId: null,
+        traceNo: null,
+        channelTrxNo: null,
+        period: null,
+        payTime: null,
+        paySuccessTime: null,
+      },
+      buttonVOs: [{ primary: true, type: 1, name: '付款' }],
+      labelVOs: null,
+      invoiceVO: null,
+      couponAmount: '0',
+      autoCancelTime: '1823652629288',
+      orderStatusName: '待付款',
+      orderSatusRemark: '需支付￥0.20',
+      logisticsLogVO: null,
+      invoiceStatus: 3,
+      invoiceDesc: '暂不开发票',
+      invoiceUrl: null,
+    },
+
+
+ 立即购买 流程 获取订单信息 
+前端传递{
+couponList: undefined
+goodsRequestList: [available: 1
+goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
+price: 9800
+primaryImage: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
+quantity: 1
+specInfo:[
+       {specTitle: "颜色", specValue: "米色荷叶边"}
+       {specTitle: "尺寸", specValue: "12寸"}
+       ]
+spuId: 1
+storeId: "1"
+thumb: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
+title: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"]
+storeInfoList: [{storeId: "1", storeName: undefined}]
+userAddressReq: undefined
+}    
+
+
+后端返回 
+{
+  abnormalDeliveryGoodsList: null
+deliveryFeeList: null
+inValidGoodsList: null
+invoiceRequest: null
+invoiceSupport: 1
+limitGoodsList: null
+outOfStockGoodsList: null
+packageCount: 1
+settleType: 0
+skuImages: null
+storeGoodsList: [{
+  couponList: [{couponId: 11, storeId: "1000"}]
+deliveryFee: "0"
+deliveryWords: null
+goodsCount: 1
+remark: null
+skuDetailVos: [
+  {
+    discountSettlePrice: 9800
+egoodsName: null
+goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
+image: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
+masterGoodsType: 0
+oriPrice: undefined
+payPrice: 9800
+promotionIds: null
+quantity: 1
+realSettlePrice: 9800
+reminderStock: 119
+roomId: undefined
+settlePrice: 9800
+skuId: undefined
+skuSpecLst: [ 
+  {specTitle: "颜色", specValue: "米色荷叶边"}
+{specTitle: "尺寸", specValue: "12寸"}
+]
+spuId: 1
+storeId: "1"
+tagPrice: null
+tagText: null
+totalSkuPrice: 9800
+unit: "KG"
+viceGoodsType: 0
+volume: null
+weight: 0
+  }
+]
+storeId: "1000"
+storeName: "云Mall深圳旗舰店"
+storeTotalAmount: "0"
+storeTotalCouponAmount: "0"
+storeTotalDiscountAmount: "110000"
+storeTotalPayAmount: "179997"
+}]
+totalAmount: "289997"
+totalCouponAmount: 0
+totalDeliveryFee: "0"
+totalDiscountAmount: "110000"
+totalGoodsAmount: "289997"
+totalGoodsCount: 3
+totalPayAmount: 8700
+totalPromotionAmount: "1100"
+totalSalePrice: 9800
+userAddress: null
+}
+
+

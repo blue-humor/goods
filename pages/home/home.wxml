@@ -9,7 +9,7 @@
 	</t-loading>
 </view>
 <view class="home-page-header">
-	<view class="search" bind:tap="navToSearchPage">
+	<!-- <view class="search" bind:tap="navToSearchPage">
 		<t-search
 		  t-class-input="t-search__input"
 		  t-class-input-container="t-search__input-container"
@@ -25,7 +25,7 @@
 			  color="#bbb"
 			/>
 		</t-search>
-	</view>
+	</view> -->
 	<view class="swiper-wrap">
 		<t-swiper
 		  wx:if="{{imgSrcs.length > 0}}"

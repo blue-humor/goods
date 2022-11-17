@@ -37,8 +37,12 @@ Page({
                 "password": "admin"
               }).then((res) => {
                   wx.setStorageSync('token', res.token)
+                  wx.setStorageSync('memberId', 1)
+
                   wx.hideLoading({})
-                  wx.switchTab({ url: '/pages/home/home' });
+                  wx.switchTab({
+                    url: '/pages/home/home'
+                  });
                 },
                 (reason) => {
                   wx.hideLoading({})
