@@ -7,6 +7,8 @@ import {
 Page({
   data: {
     cartGroupData: null,
+    arr: [],
+
   },
 
   // 调用自定义tabbar的init函数，使页面与tabbar激活状态保持一致
@@ -215,9 +217,12 @@ Page({
       },
       isSelected,
     } = e.detail;
+
     const {
       currentGoods
     } = this.findGoods(spuId, skuId);
+
+  
     Toast({
       context: this,
       selector: '#t-toast',

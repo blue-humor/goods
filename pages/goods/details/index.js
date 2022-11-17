@@ -1,6 +1,7 @@
 import Toast from 'tdesign-miniprogram/toast/index';
 import {
-  fetchGood
+  fetchGood,
+  arrGood
 } from '../../../services/good/fetchGood';
 import {
   fetchActivityList
@@ -242,8 +243,7 @@ Page({
     }
   },
 
-  addCart(type) {
-
+  async addCart(type) {
     const {
       isAllSelectedSku,
       buyNum
@@ -277,7 +277,26 @@ Page({
       title: this.data.details.title,
       memberId: wx.getStorageSync('memberId')
     };
-    console.log('query', query);
+
+    const res = await arrGood(
+      query
+    )
+    // 弹框bug
+    if (res.code === 200) {
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '加入购物车成功',
+      });
+      this.handlePopupHide()
+    }else{
+      
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '加入购物车失败，请稍后再试',
+      });
+    }
   },
 
   gotoBuy(type) {
@@ -426,8 +445,7 @@ Page({
               commentScore: item.commentScore,
               commentContent: item.commentContent || '用户未填写评价',
               userHeadUrl: item.isAnonymity ?
-                this.anonymityAvatar :
-                item.userHeadUrl || this.anonymityAvatar,
+                this.anonymityAvatar : item.userHeadUrl || this.anonymityAvatar,
             };
           }),
         };

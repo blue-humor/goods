@@ -1,9 +1,15 @@
 /* eslint-disable no-param-reassign */
-import { fetchDeliveryAddressList } from '../../../../services/address/fetchAddress';
+import {
+  fetchDeliveryAddressList
+} from '../../../../services/address/fetchAddress';
 import Toast from 'tdesign-miniprogram/toast/index';
-import { resolveAddress, rejectAddress } from './util';
-import { getAddressPromise } from '../edit/util';
-
+import {
+  resolveAddress,
+  rejectAddress
+} from './util';
+import {
+  getAddressPromise
+} from '../edit/util';
 Page({
   data: {
     addressList: [],
@@ -18,7 +24,9 @@ Page({
   hasSelect: false,
 
   onLoad(query) {
-    const { selectMode = '', isOrderSure = '', id = '' } = query;
+    const {
+      selectMode = '', isOrderSure = '', id = ''
+    } = query;
     this.setData({
       isOrderSure: !!isOrderSure,
       extraSpace: !!isOrderSure,
@@ -47,15 +55,21 @@ Page({
     });
   },
   getAddressList() {
-    const { id } = this.data;
-    fetchDeliveryAddressList().then((addressList) => {
-      console.log('addressList',addressList);
-      addressList.forEach((address) => {
+    const {
+      id
+    } = this.data;
+    fetchDeliveryAddressList({
+      memberId: wx.getStorageSync('memberId')
+    }).then((addressList) => {
+      console.log('addressList', addressList);
+      addressList?.data.forEach((address) => {
         if (address.id === id) {
           address.checked = true;
         }
       });
-      this.setData({ addressList });
+      this.setData({
+        addressList: addressList.data
+      });
     });
   },
   getWXAddressHandle() {
@@ -78,7 +92,9 @@ Page({
           icon: '',
           duration: 1000,
         });
-        const { length: len } = this.data.addressList;
+        const {
+          length: len
+        } = this.data.addressList;
         this.setData({
           [`addressList[${len}]`]: {
             name: res.userName,
@@ -92,10 +108,17 @@ Page({
       },
     });
   },
-  confirmDelteHandle({ detail }) {
-    const { id } = detail || {};
+  confirmDelteHandle({
+    detail
+  }) {
+    const {
+      id
+    } = detail || {};
     if (id !== undefined) {
-      this.setData({ deleteID: id, showDeleteConfirm: true });
+      this.setData({
+        deleteID: id,
+        showDeleteConfirm: true
+      });
       Toast({
         context: this,
         selector: '#t-toast',
@@ -114,33 +137,49 @@ Page({
     }
   },
   deleteAddressHandle(e) {
-    const { id } = e.currentTarget.dataset;
+    const {
+      id
+    } = e.currentTarget.dataset;
     this.setData({
       addressList: this.data.addressList.filter((address) => address.id !== id),
       deleteID: '',
       showDeleteConfirm: false,
     });
   },
-  editAddressHandle({ detail }) {
+  editAddressHandle({
+    detail
+  }) {
     this.waitForNewAddress();
 
-    const { id } = detail || {};
-    wx.navigateTo({ url: `/pages/usercenter/address/edit/index?id=${id}` });
+    const {
+      id
+    } = detail || {};
+    wx.navigateTo({
+      url: `/pages/usercenter/address/edit/index?id=${id}`
+    });
   },
-  selectHandle({ detail }) {
+  selectHandle({
+    detail
+  }) {
     if (this.selectMode) {
       this.hasSelect = true;
-     
-     resolveAddress(detail);
-     console.log('detaildetail',detail);
-      wx.navigateBack({ delta: 1 });
+
+      resolveAddress(detail);
+      console.log('detaildetail', detail);
+      wx.navigateBack({
+        delta: 1
+      });
     } else {
-      this.editAddressHandle({ detail });
+      this.editAddressHandle({
+        detail
+      });
     }
   },
   createHandle() {
     this.waitForNewAddress();
-    wx.navigateTo({ url: '/pages/usercenter/address/edit/index' });
+    wx.navigateTo({
+      url: '/pages/usercenter/address/edit/index'
+    });
   },
 
   waitForNewAddress() {

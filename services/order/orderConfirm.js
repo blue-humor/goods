@@ -1,17 +1,30 @@
-import { config } from '../../config/index';
-import { mockIp, mockReqId } from '../../utils/mock';
+import {
+  config
+} from '../../config/index';
+import {
+  mockIp,
+  mockReqId
+} from '../../utils/mock';
+
+import request from "../../utils/request";
 
 /** 获取结算mock数据 */
 function mockFetchSettleDetail(params) {
-  const { delay } = require('../_utils/delay');
-  const { genSettleDetail } = require('../../model/order/orderConfirm');
+  const {
+    delay
+  } = require('../_utils/delay');
+  const {
+    genSettleDetail
+  } = require('../../model/order/orderConfirm');
 
   return delay().then(() => genSettleDetail(params));
 }
 
 /** 提交mock订单 */
 function mockDispatchCommitPay() {
-  const { delay } = require('../_utils/delay');
+  const {
+    delay
+  } = require('../_utils/delay');
 
   return delay().then(() => ({
     data: {
@@ -35,13 +48,10 @@ function mockDispatchCommitPay() {
 }
 
 /** 获取结算数据 */
-export function fetchSettleDetail(params) {
-  if (config.useMock) {
-    return mockFetchSettleDetail(params);
-  }
-
-  return new Promise((resolve) => {
-    resolve('real api');
+export function fetchSettleDetail(data) {
+  return request(`/v1/buyNow`, {
+    method: 'POST',
+    data,
   });
 }
 
@@ -59,7 +69,9 @@ export function dispatchCommitPay(params) {
 /** 开发票 */
 export function dispatchSupplementInvoice() {
   if (config.useMock) {
-    const { delay } = require('../_utils/delay');
+    const {
+      delay
+    } = require('../_utils/delay');
     return delay();
   }
 

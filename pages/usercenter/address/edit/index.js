@@ -1,5 +1,5 @@
 import Toast from 'tdesign-miniprogram/toast/index';
-import { fetchDeliveryAddress } from '../../../../services/address/fetchAddress';
+import { fetchDeliveryAddress,fetchDeliveryAddressListAdd } from '../../../../services/address/fetchAddress';
 import { areaData } from '../../../../config/index';
 import { resolveAddress, rejectAddress } from './util';
 
@@ -65,8 +65,6 @@ Page({
   },
   getAddressDetail(id) {
     fetchDeliveryAddress(id).then((detail) => {
-      console.log("id",id);
-      console.log("detail",detail);
 
       this.setData({ locationState: detail }, () => {
         const { isLegal, tips } = this.onVerifyInputLegal();
@@ -300,7 +298,7 @@ Page({
       },
     );
   },
-  formSubmit() {
+  async formSubmit() {
     const { submitActive } = this.data;
     if (!submitActive) {
       Toast({
@@ -314,33 +312,40 @@ Page({
     }
     const { locationState } = this.data;
 
+    const data={
+      ...locationState,
+      memberId:wx.getStorageSync('memberId')
+    }
     console.log('addressTag',locationState);
 
     this.hasSava = true;
 
-    resolveAddress({
-      saasId: '88888888',
-      uid: `88888888205500`,
-      authToken: null,
-      id: locationState.addressId,
-      addressId: locationState.addressId,
-      phone: locationState.phone,
-      name: locationState.name,
-      countryName: locationState.countryName,
-      countryCode: locationState.countryCode,
-      provinceName: locationState.provinceName,
-      provinceCode: locationState.provinceCode,
-      cityName: locationState.cityName,
-      cityCode: locationState.cityCode,
-      districtName: locationState.districtName,
-      districtCode: locationState.districtCode,
-      detailAddress: locationState.detailAddress,
-      isDefault: locationState.isDefault === 1 ? 1 : 0,
-      addressTag: locationState.addressTag,
-      latitude: locationState.latitude,
-      longitude: locationState.longitude,
-      storeId: null,
-    });
+    // resolveAddress({
+    //   saasId: '88888888',
+    //   uid: `88888888205500`,
+    //   memberId:wx.getStorageSync('memberId'),
+    //   authToken: null,
+    //   id: locationState.addressId,
+    //   addressId: locationState.addressId,
+    //   phone: locationState.phone,
+    //   name: locationState.name,
+    //   countryName: locationState.countryName,
+    //   countryCode: locationState.countryCode,
+    //   provinceName: locationState.provinceName,
+    //   provinceCode: locationState.provinceCode,
+    //   cityName: locationState.cityName,
+    //   cityCode: locationState.cityCode,
+    //   districtName: locationState.districtName,
+    //   districtCode: locationState.districtCode,
+    //   detailAddress: locationState.detailAddress,
+    //   isDefault: locationState.isDefault === 1 ? 1 : 0,
+    //   addressTag: locationState.addressTag,
+    //   latitude: locationState.latitude,
+    //   longitude: locationState.longitude,
+    //   storeId: null,
+    // });
+
+   const res=await fetchDeliveryAddressListAdd(data)
 
     wx.navigateBack({ delta: 1 });
   },

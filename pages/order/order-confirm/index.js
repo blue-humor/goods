@@ -123,9 +123,6 @@ Page({
     };
     fetchSettleDetail(params).then(
       (res) => {
-        console.log('获取订单确认', params);
-        console.log('获取订单确认res', res.data);
-
         this.setData({
           loading: false,
         });

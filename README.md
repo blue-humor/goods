@@ -590,7 +590,9 @@ uid: "88888888205502"
  立即购买 流程 获取订单信息 
 前端传递{
 couponList: undefined
-goodsRequestList: [available: 1
+goodsRequestList: [
+{
+available: 1
 goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
 price: 9800
 primaryImage: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
@@ -602,7 +604,9 @@ specInfo:[
 spuId: 1
 storeId: "1"
 thumb: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
-title: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"]
+title: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
+  }
+]
 storeInfoList: [{storeId: "1", storeName: undefined}]
 userAddressReq: undefined
 }    
@@ -610,7 +614,7 @@ userAddressReq: undefined
 
 后端返回 
 {
-  abnormalDeliveryGoodsList: null
+abnormalDeliveryGoodsList: null
 deliveryFeeList: null
 inValidGoodsList: null
 invoiceRequest: null
@@ -621,14 +625,14 @@ packageCount: 1
 settleType: 0
 skuImages: null
 storeGoodsList: [{
-  couponList: [{couponId: 11, storeId: "1000"}]
+couponList: [{couponId: 11, storeId: "1000"}]
 deliveryFee: "0"
 deliveryWords: null
 goodsCount: 1
 remark: null
 skuDetailVos: [
-  {
-    discountSettlePrice: 9800
+{
+discountSettlePrice: 9800
 egoodsName: null
 goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
 image: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
@@ -643,7 +647,7 @@ roomId: undefined
 settlePrice: 9800
 skuId: undefined
 skuSpecLst: [ 
-  {specTitle: "颜色", specValue: "米色荷叶边"}
+{specTitle: "颜色", specValue: "米色荷叶边"}
 {specTitle: "尺寸", specValue: "12寸"}
 ]
 spuId: 1
@@ -655,7 +659,7 @@ unit: "KG"
 viceGoodsType: 0
 volume: null
 weight: 0
-  }
+}
 ]
 storeId: "1000"
 storeName: "云Mall深圳旗舰店"
@@ -679,15 +683,15 @@ userAddress: null
 提交订单支付成功
 前端传递
 {
-  couponList: [ {couponId: 11, storeId: "1000"}]
-goodsRequestList: [{
-  available: 1
+couponList: [ {couponId: 11, storeId: "1000"}]
+goodsRequestList:[{
+available: 1
 goodsName: "【真】白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙"
 price: 9800
 primaryImage: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
 quantity: 2
 specInfo:  [ {specTitle: "颜色", specValue: "米色荷叶边"}
-1: {specTitle: "尺寸", specValue: "12寸"}]
+{specTitle: "尺寸", specValue: "12寸"}]
 spuId: 1
 storeId: "1"
 thumb: "https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png"
