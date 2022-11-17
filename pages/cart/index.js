@@ -114,7 +114,6 @@ Page({
       const res = await fetchCartGroupData({
         memberId,
       });
-      console.log(res.data);
       return res
     }
 
@@ -130,6 +129,7 @@ Page({
     skuId,
     isSelected
   }) {
+    console.log(' spuId,skuId,isSelected', spuId, skuId, isSelected);
     this.findGoods(spuId, skuId).currentGoods.isSelected = isSelected;
     return Promise.resolve();
   },
@@ -159,6 +159,7 @@ Page({
     skuId,
     quantity
   }) {
+    console.log('quantity111', quantity);
     this.findGoods(spuId, skuId).currentGoods.quantity = quantity;
     return Promise.resolve();
   },
@@ -243,6 +244,7 @@ Page({
       },
       isSelected,
     } = e.detail;
+
     this.selectStoreService({
       storeId,
       isSelected
@@ -353,6 +355,7 @@ Page({
   },
 
   onSelectAll(event) {
+    console.log('event', event?.detail);
     const {
       isAllSelected
     } = event?.detail ?? {};
