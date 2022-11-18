@@ -34,7 +34,7 @@
 					/>
 					<view class="store-name">{{store.storeName}}</view>
 				</view>
-				<view class="get-coupon" catch:tap="gotoCoupons">优惠券</view>
+				<!-- <view class="get-coupon" catch:tap="gotoCoupons">优惠券</view> -->
 			</view>
 		</view>
 		<block
@@ -95,6 +95,7 @@
 								<view slot="append-body" class="goods-stepper">
 									<view class="stepper-tip" wx:if="{{goods.shortageStock}}">库存不足</view>
 									<t-stepper
+
 									 classname="stepper-info"
 									 value="{{goods.quantity}}"
 									 min="{{1}}"

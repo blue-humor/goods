@@ -7,17 +7,21 @@ import {
 Page({
   data: {
     cartGroupData: null,
-    arr: [],
-
+    totalNum: 0,
+    isSelectedGood: false,
   },
 
   // 调用自定义tabbar的init函数，使页面与tabbar激活状态保持一致
   onShow() {
     this.getTabBar().init();
+
   },
 
   onLoad() {
     this.refreshData();
+
+
+
   },
 
   refreshData() {
@@ -116,6 +120,8 @@ Page({
       const res = await fetchCartGroupData({
         memberId,
       });
+
+
       return res
     }
 
@@ -131,7 +137,6 @@ Page({
     skuId,
     isSelected
   }) {
-    console.log(' spuId,skuId,isSelected', spuId, skuId, isSelected);
     this.findGoods(spuId, skuId).currentGoods.isSelected = isSelected;
     return Promise.resolve();
   },
@@ -161,8 +166,7 @@ Page({
     skuId,
     quantity
   }) {
-    console.log('quantity111', quantity);
-    this.findGoods(spuId, skuId).currentGoods.quantity = quantity;
+    this.findGoods(spuId, skuId).currentGoods.quantity = quantity
     return Promise.resolve();
   },
 
@@ -209,20 +213,25 @@ Page({
     return Promise.resolve();
   },
 
+
+  //单选择
   onGoodsSelect(e) {
     const {
       goods: {
         spuId,
-        skuId
+        skuId,
+        price,
+        quantity
       },
       isSelected,
     } = e.detail;
+
 
     const {
       currentGoods
     } = this.findGoods(spuId, skuId);
 
-  
+
     Toast({
       context: this,
       selector: '#t-toast',
@@ -240,6 +249,8 @@ Page({
     }).then(() =>
       this.refreshData(),
     );
+
+    this.handleCoverage()
   },
 
   onStoreSelect(e) {
@@ -249,7 +260,6 @@ Page({
       },
       isSelected,
     } = e.detail;
-
     this.selectStoreService({
       storeId,
       isSelected
@@ -262,10 +272,14 @@ Page({
     const {
       goods: {
         spuId,
-        skuId
+        skuId,
+        price
       },
       quantity,
     } = e.detail;
+
+
+
     const {
       currentGoods
     } = this.findGoods(spuId, skuId);
@@ -308,6 +322,10 @@ Page({
     }).then(() =>
       this.refreshData(),
     );
+
+    this.handleCoverage()
+
+
   },
 
   goCollect() {
@@ -359,18 +377,71 @@ Page({
     });
   },
 
+
+  // 调用接口改变全选
   onSelectAll(event) {
-    console.log('event', event?.detail);
     const {
       isAllSelected
     } = event?.detail ?? {};
+
+    this.refreshData()
+
+    if (!isAllSelected) {
+      this.data.cartGroupData.storeGoods.forEach((store) => {
+        store.promotionGoodsList.forEach((promotion) => {
+          promotion.goodsPromotionList.forEach((m) => {
+            m.isSelected = true
+            return this.handleCoverage()
+
+          });
+        });
+      });
+    } else {
+      this.data.cartGroupData.storeGoods.forEach((store) => {
+        store.promotionGoodsList.forEach((promotion) => {
+          promotion.goodsPromotionList.forEach((m) => {
+            m.isSelected = false
+            return this.handleCoverage()
+          });
+        });
+      });
+    }
+
+
+
+
+
+
     Toast({
       context: this,
       selector: '#t-toast',
       message: `${isAllSelected ? '取消' : '点击'}了全选按钮`,
     });
-    // 调用接口改变全选
+
   },
+
+
+  //覆盖
+  handleCoverage() {
+    let arr = []
+    this.data.cartGroupData.storeGoods.forEach((store) => {
+      store.promotionGoodsList.forEach((promotion) => {
+        promotion.goodsPromotionList.forEach((m) => {
+          if (m.isSelected === true) {
+            arr.push({
+              price: m.price,
+              quantity: m.quantity
+            })
+          }
+        });
+      });
+    })
+    const totel = arr.reduce((sum, currentItem) => {
+      return sum + (currentItem.price * currentItem.quantity);
+    }, 0);
+    this.data.cartGroupData.totalAmount = totel
+  },
+
 
   onToSettle() {
     const goodsRequestList = [];
@@ -387,6 +458,7 @@ Page({
       'order.goodsRequestList',
       JSON.stringify(goodsRequestList),
     );
+
     wx.navigateTo({
       url: '/pages/order/order-confirm/index?type=cart'
     });
