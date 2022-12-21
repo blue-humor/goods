@@ -392,7 +392,6 @@ Page({
           promotion.goodsPromotionList.forEach((m) => {
             m.isSelected = true
             return this.handleCoverage()
-
           });
         });
       });
@@ -441,7 +440,6 @@ Page({
     }, 0);
     this.data.cartGroupData.totalAmount = totel
   },
-
 
   onToSettle() {
     const goodsRequestList = [];

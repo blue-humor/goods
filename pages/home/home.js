@@ -1,5 +1,9 @@
-import { fetchHome } from '../../services/home/home';
-import { fetchGoodsList } from '../../services/good/fetchGoods';
+import {
+  fetchHome
+} from '../../services/home/home';
+import {
+  fetchGoodsList
+} from '../../services/good/fetchGoods';
 import Toast from 'tdesign-miniprogram/toast/index';
 
 Page({
@@ -13,7 +17,9 @@ Page({
     autoplay: true,
     duration: 500,
     interval: 5000,
-    navigation: { type: 'dots' },
+    navigation: {
+      type: 'dots'
+    },
   },
 
   goodListPagination: {
@@ -31,8 +37,8 @@ Page({
 
   onLoad() {
     this.init();
- 
-    
+
+
 
   },
 
@@ -58,7 +64,7 @@ Page({
     });
     fetchHome({}).then(res => {
       this.setData({
-        tabList:[{
+        tabList: [{
           text: '精选推荐',
           key: 0,
         }],
@@ -85,7 +91,9 @@ Page({
       });
     }
 
-    this.setData({ goodsListLoadStatus: 1 });
+    this.setData({
+      goodsListLoadStatus: 1
+    });
 
     const pageSize = this.goodListPagination.num;
     let pageIndex =
@@ -95,7 +103,10 @@ Page({
     }
 
     try {
-      const nextList = await fetchGoodsList({pageIndex, pageSize})
+      const nextList = await fetchGoodsList({
+        pageIndex,
+        pageSize
+      })
       this.setData({
         goodsList: fresh ? nextList.data : this.data.goodsList.concat(nextList.data),
         goodsListLoadStatus: 0,
@@ -104,13 +115,19 @@ Page({
       this.goodListPagination.index = pageIndex;
       this.goodListPagination.num = pageSize;
     } catch (err) {
-      this.setData({ goodsListLoadStatus: 3 });
+      this.setData({
+        goodsListLoadStatus: 3
+      });
     }
   },
 
   goodListClickHandle(e) {
-    const { index } = e.detail;
-    const { id } = this.data.goodsList[index];
+    const {
+      index
+    } = e.detail;
+    const {
+      id
+    } = this.data.goodsList[index];
 
 
     wx.navigateTo({
@@ -127,11 +144,17 @@ Page({
   },
 
   navToSearchPage() {
-    wx.navigateTo({ url: '/pages/goods/search/index' });
+    wx.navigateTo({
+      url: '/pages/goods/search/index'
+    });
   },
 
-  navToActivityDetail({ detail }) {
-    const { index: promotionID = 0 } = detail || {};
+  navToActivityDetail({
+    detail
+  }) {
+    const {
+      index: promotionID = 0
+    } = detail || {};
     wx.navigateTo({
       url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
     });
